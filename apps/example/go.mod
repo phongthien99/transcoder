@@ -7,7 +7,7 @@ require (
 	github.com/go-swagno/swagno v1.2.0
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/sigmaott/gest/package/extension/configfx v0.0.0-20240501142708-fa21b973337b
-	github.com/sigmaott/gest/package/extension/echofx v0.0.0-20240501142708-fa21b973337b
+	github.com/sigmaott/gest/package/extension/echofx v0.0.0-20240508025150-07edfa1e5f3a
 	github.com/sigmaott/gest/package/extension/i18nfx v0.0.0-20240501142708-fa21b973337b
 	github.com/sigmaott/gest/package/extension/logfx v0.0.0-20240501142708-fa21b973337b
 	github.com/sigmaott/gest/package/extension/swaggerfx v0.0.0-20240501142708-fa21b973337b
@@ -72,7 +72,7 @@ require (
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
 	github.com/samber/lo v1.39.0 // indirect
-	github.com/sigmaott/gest/package/core v0.0.0-20240501142708-fa21b973337b // indirect
+	github.com/sigmaott/gest/package/core v0.0.0-20240508025150-07edfa1e5f3a // indirect
 	github.com/sigmaott/gest/package/technique/database/base v0.0.0-20240312044917-cb29b7991f3f // indirect
 	github.com/sigmaott/gest/package/technique/database/mongo v0.0.0-20240312044917-cb29b7991f3f // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
@@ -101,12 +101,12 @@ require (
 	go.uber.org/dig v1.17.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
-	golang.org/x/crypto v0.22.0 // indirect
+	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f // indirect
-	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.19.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.20.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240304212257-790db918fca8 // indirect

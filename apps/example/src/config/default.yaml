@@ -1,6 +1,6 @@
 http:
   port: 8086
   host: 0.0.0.0
-  base_path: "/api/job"
+  base_path: "/api/example"
 log:
   level: INFO
