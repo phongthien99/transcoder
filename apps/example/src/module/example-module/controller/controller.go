@@ -52,20 +52,20 @@ func (e *exampleController) Create() {
 
 // DeleteOne implements IExampleController.
 func (e *exampleController) DeleteOne() {
-	panic("unimplemented")
+	// panic("unimplemented")
 }
 
 // FindOne implements IExampleController.
 func (e *exampleController) FindOne() {
-	panic("unimplemented")
+	// panic("unimplemented")
 }
 
 // Paginate implements IExampleController.
 func (e *exampleController) Paginate() {
-	panic("unimplemented")
+	// panic("unimplemented")
 }
 
 // UpdateOne implements IExampleController.
 func (e *exampleController) UpdateOne() {
-	panic("unimplemented")
+	// panic("unimplemented")
 }

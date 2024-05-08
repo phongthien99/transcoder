@@ -13,12 +13,10 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/sigmaott/gest/package/extension/configfx"
 	"github.com/sigmaott/gest/package/extension/echofx"
-	echoSwagger "github.com/sigmaott/gest/package/extension/echofx/echo-swagger"
 	"github.com/sigmaott/gest/package/extension/i18nfx"
 	"github.com/sigmaott/gest/package/extension/logfx"
 	"github.com/sigmaott/gest/package/extension/swaggerfx"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 )
 
 func NewApp(config *types.EnvironmentVariable) *fx.App {
@@ -52,6 +50,8 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 		}),
 		// helper
 		fx.Invoke(EnableSwagger),
+		// log http
+		fx.Invoke(EnableLogRequest),
 
 		// my module
 		example_http.Module(),
@@ -59,7 +59,7 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 
 }
 
-func SetGlobalPrefix(e *echo.Echo, cfg *types.EnvironmentVariable) *echo.Group {
+func SetGlobalPrefix(e *echo.Echo, cfg configfx.IConfig[*types.EnvironmentVariable]) *echo.Group {
 
 	// i18nInterceptorInstance := i18nInterceptor.NewI18nInterceter(i18nService, universalTranslator.GetFallback().Locale())
 	// e.Use(
@@ -69,15 +69,5 @@ func SetGlobalPrefix(e *echo.Echo, cfg *types.EnvironmentVariable) *echo.Group {
 	// 		sigmaCommon.AllExceptionFilter,
 	// 	),
 	// )
-	return e.Group(cfg.Http.BasePath)
-}
-
-func EnableSwagger(e *echo.Group, logger *zap.SugaredLogger, sw *swagno.Swagger) {
-	sw.Host = ""
-	e.GET("/*", echoSwagger.EchoWrapHandler(func(c *echoSwagger.Config) {
-		f := func() []byte {
-			return sw.MustToJson()
-		}
-		c.DynamicLoad = &f
-	}))
+	return e.Group(cfg.Get().Http.BasePath)
 }
