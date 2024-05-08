@@ -13,10 +13,10 @@ import (
 
 type IExampleController interface {
 	Create()
-	// FindOne()
-	// Paginate()
-	// UpdateOne()
-	// DeleteOne()
+	FindOne()
+	Paginate()
+	UpdateOne()
+	DeleteOne()
 }
 
 type exampleController struct {
@@ -26,7 +26,7 @@ type exampleController struct {
 
 func NewExampleController(router *echo.Group, swagger *swagno.Swagger) IExampleController {
 	return &exampleController{
-		router:  router.Group("/m3u8-crawl"),
+		router:  router.Group("/example"),
 		swagger: swagger,
 	}
 
@@ -48,4 +48,24 @@ func (e *exampleController) Create() {
 		return c.JSON(201, model.Example{})
 	})
 
+}
+
+// DeleteOne implements IExampleController.
+func (e *exampleController) DeleteOne() {
+	panic("unimplemented")
+}
+
+// FindOne implements IExampleController.
+func (e *exampleController) FindOne() {
+	panic("unimplemented")
+}
+
+// Paginate implements IExampleController.
+func (e *exampleController) Paginate() {
+	panic("unimplemented")
+}
+
+// UpdateOne implements IExampleController.
+func (e *exampleController) UpdateOne() {
+	panic("unimplemented")
 }
