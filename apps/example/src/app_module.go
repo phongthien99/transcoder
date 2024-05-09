@@ -32,6 +32,7 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 				SetGlobalPrefix,
 				fx.ParamTags(`name:"platformEcho"`),
 			)),
+
 		fx.Invoke(func(*echo.Echo) {}),
 		// log
 		logfx.ForRoot(config.Log.Level),
@@ -44,12 +45,23 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 				vi.New(),
 			},
 		}),
+		// i18n validate
+		fx.Provide(fx.Annotate(
+			NewValidate,
+			fx.ParamTags(`name:"universalTranslator"`),
+		),
+		),
+
 		// swagger
 		swaggerfx.ForRoot(swagno.Config{
 			Path: config.Http.BasePath,
 		}),
 		// helper
 		fx.Invoke(EnableSwagger),
+		fx.Invoke(fx.Annotate(
+			SetEchoInterceptor,
+			fx.ParamTags(`name:"platformEcho"`, `name:"universalTranslator"`),
+		)),
 		// log http
 		fx.Invoke(EnableLogRequest),
 

@@ -1,13 +1,25 @@
 package src
 
 import (
+	"errors"
 	"fmt"
+	"net/http"
 	"time"
 
+	i18nInterceptor "example/src/i18n/interceptor"
+	i18nValidate "example/src/i18n/validate"
+	validateMessage "example/src/locales/validate-message"
+
+	ut "github.com/go-playground/universal-translator"
+	"github.com/go-playground/validator/v10"
 	"github.com/go-swagno/swagno"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/sigmaott/gest/package/extension/echofx/echo-swagger"
+	exceptionFilter "github.com/sigmaott/gest/package/extension/echofx/exception-filter"
+	"github.com/sigmaott/gest/package/extension/echofx/interceptor"
+	"github.com/sigmaott/gest/package/extension/i18nfx"
+	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/zap"
 )
 
@@ -43,4 +55,52 @@ func EnableLogRequest(e *echo.Group) {
 		},
 	}))
 
+}
+
+func NewValidate(universalTranslator *ut.UniversalTranslator) *i18nValidate.I18nValidate {
+	return i18nValidate.NewI18nValidate(validator.New(), universalTranslator, validateMessage.ValidateMessage)
+}
+
+func SetEchoInterceptor(e *echo.Echo, universalTranslator *ut.UniversalTranslator, i18nValidate *i18nValidate.I18nValidate, i18nService i18nfx.II18nService) {
+
+	i18nInterceptorInstance := i18nInterceptor.NewI18nInterceter(i18nService, universalTranslator.GetFallback().Locale())
+	e.Use(
+		interceptor.UseInterceptors(i18nInterceptorInstance.Interceptor()),
+		exceptionFilter.UseFilters(
+			i18nValidate.ValidateExceptionFilter(),
+			AllExceptionFilter,
+		),
+	)
+
+}
+
+func MongoNotFoundExceptionFilter(err error, c echo.Context) error {
+	if errors.Is(err, mongo.ErrNoDocuments) {
+
+		return c.JSON(http.StatusNotFound, map[string]any{
+			"statusCode": 404,
+			"message":    "Record Not Found",
+			"path":       c.Request().URL.Path,
+			"timestamp":  time.Now().UnixMilli(),
+		})
+	}
+	return err
+}
+
+func AllExceptionFilter(err error, c echo.Context) error {
+
+	if err != nil {
+		e := err
+		if errors.Unwrap(err) != nil {
+			e = errors.Unwrap(err)
+		}
+		return c.JSON(http.StatusInternalServerError, map[string]any{
+			"statusCode": 500,
+			"message":    e.Error(),
+			"path":       c.Request().URL.Path,
+			"timestamp":  time.Now().UnixMilli(),
+		})
+	}
+
+	return nil
 }
