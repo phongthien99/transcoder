@@ -82,6 +82,7 @@ require (
 	github.com/sigmaott/gest/package/extension/metricfx v0.0.0-20240622073038-bb6b74a90a0d // indirect
 	github.com/sigmaott/gest/package/technique/database/base v0.0.0-20240312044917-cb29b7991f3f // indirect
 	github.com/sigmaott/gest/package/technique/database/mongo v0.0.0-20240312044917-cb29b7991f3f // indirect
+	github.com/sigmaott/gest/package/technique/health v0.0.0-20240622084414-a225afc6c4f5 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect

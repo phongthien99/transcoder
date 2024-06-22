@@ -366,6 +366,8 @@ github.com/sigmaott/gest/package/technique/database/base v0.0.0-20240312044917-c
 github.com/sigmaott/gest/package/technique/database/base v0.0.0-20240312044917-cb29b7991f3f/go.mod h1:N44oryDKhoJvifbmvmiv25USRS4P9cQX2kj08Q5MIt4=
 github.com/sigmaott/gest/package/technique/database/mongo v0.0.0-20240312044917-cb29b7991f3f h1:1lSypSsqX0Esnx+/62rveVzOaQbxWTj/O6YId39h/D0=
 github.com/sigmaott/gest/package/technique/database/mongo v0.0.0-20240312044917-cb29b7991f3f/go.mod h1:coFIKvQXn+MaQSode+22xMbMXv19D6KRruej6xekxyQ=
+github.com/sigmaott/gest/package/technique/health v0.0.0-20240622084414-a225afc6c4f5 h1:I5xQrSrCJ03pmbgU9qRGa9oXykFp+x5vAgF1H+c64kY=
+github.com/sigmaott/gest/package/technique/health v0.0.0-20240622084414-a225afc6c4f5/go.mod h1:y5byo9YQX6hJ0zjg6EIFCCIU5KRoTn8VrY63Vt2ji/s=
 github.com/sigmaott/gest/package/technique/version v0.0.0-20240312044917-cb29b7991f3f h1:nPtn7IAYwiyp3/vw/TKELRwZ1qQsHSxj96uxRl8fIqw=
 github.com/sigmaott/gest/package/technique/version v0.0.0-20240312044917-cb29b7991f3f/go.mod h1:9gdwQ7/yjBfgC1ARL4zTA9HgCYHij8CGE2nDagsVj7o=
 github.com/sigmaott/gest/package/technique/version v0.0.0-20240501142708-fa21b973337b h1:p91K3aF0Q46nDR6woIAqvg7QlQoa50sV2eLrQ6rZ43A=
