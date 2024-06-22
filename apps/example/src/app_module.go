@@ -3,6 +3,7 @@ package src
 import (
 	"example/src/config/types"
 	example_http "example/src/module/example-module"
+	"example/src/module/metric"
 
 	"example/src/locales/loader"
 
@@ -15,6 +16,7 @@ import (
 	"github.com/sigmaott/gest/package/extension/echofx"
 	"github.com/sigmaott/gest/package/extension/i18nfx"
 	"github.com/sigmaott/gest/package/extension/logfx"
+	"github.com/sigmaott/gest/package/extension/metricfx"
 	"github.com/sigmaott/gest/package/extension/swaggerfx"
 	"go.uber.org/fx"
 )
@@ -56,6 +58,8 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 		swaggerfx.ForRoot(swagno.Config{
 			Path: config.Http.BasePath,
 		}),
+		// metric
+		metricfx.ForRoot(),
 		// helper
 		fx.Invoke(EnableSwagger),
 		fx.Invoke(fx.Annotate(
@@ -67,6 +71,7 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 
 		// my module
 		example_http.Module(),
+		metric.Module(),
 	)
 
 }
