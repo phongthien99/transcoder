@@ -33,7 +33,7 @@ func EnableSwagger(e *echo.Group, logger *zap.SugaredLogger, sw *swagno.Swagger)
 	}))
 }
 
-func EnableLogRequest(e *echo.Group) {
+func EnableLogRequest(e *echo.Echo) {
 	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogStatus: true,
 		LogURI:    true,
@@ -56,7 +56,6 @@ func EnableLogRequest(e *echo.Group) {
 	}))
 
 }
-
 func NewValidate(universalTranslator *ut.UniversalTranslator) *i18nValidate.I18nValidate {
 	return i18nValidate.NewI18nValidate(validator.New(), universalTranslator, validateMessage.ValidateMessage)
 }

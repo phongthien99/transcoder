@@ -109,6 +109,7 @@ func (e *exampleController) DeleteOne() {
 	))
 
 	idParam := common.Param[string, int]("id")
+
 	e.router.DELETE("/:id", func(c echo.Context) error {
 		log.Print(idParam.Get(c))
 

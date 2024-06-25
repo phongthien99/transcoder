@@ -2,9 +2,10 @@ package src
 
 import (
 	"example/src/config/types"
-	example_http "example/src/module/example-module"
+	"example/src/module/ffprobe"
 	"example/src/module/health"
 	"example/src/module/metric"
+	"example/src/module/origin"
 
 	"example/src/locales/loader"
 
@@ -71,9 +72,10 @@ func NewApp(config *types.EnvironmentVariable) *fx.App {
 		fx.Invoke(EnableLogRequest),
 
 		// my module
-		example_http.Module(),
 		metric.Module(),
 		health.Module(),
+		ffprobe.Module(),
+		origin.Module(),
 	)
 
 }
